@@ -17,6 +17,7 @@ dependencies = [
     "sentence-transformers ~= 2.6.1",
     "spacy ~= 3.7.4",
     "tqdm ~= 4.66.2",
+    "hnswlib ~= 0.8.0",
 ]
 [project.urls]
 "Source" = "https://github.com/AgataGro/Article-Retrieval-System"

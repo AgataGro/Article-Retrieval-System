@@ -27,15 +27,12 @@ if __name__ == "__main__":
     records = df.to_dict('records')
 
     # Split the text in each record into sentences and clean up the text
-    # Assumes 'split_into_sentences' is a predefined function
     records = split_into_sentences(records)
 
     # Organize sentences into chunks of a specified size (here, size 10)
-    # Assumes 'create_chunks' is a predefined function
     records = create_chunks(records, 10)
 
     # Load the embedding model
-    # Assumes 'get_model' is a predefined function that loads the model
     embedding_model = get_model()
     
     # Compute embeddings for each chunk

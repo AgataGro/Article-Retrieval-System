@@ -39,7 +39,7 @@ def split_into_sentences(entries:list[dict[str, any]]):
     # Process each entry in the provided list
     for item in entries:
         # Clean the text by removing carriage returns and new lines
-        clean_text = item["Text"].replace('\r', '').replace('\n', '')
+        clean_text = item["Text"].replace('\r', '').replace('\n', ' ')
 
         # Use spaCy's model to segment the cleaned text into sentences
         doc = nlp(clean_text)

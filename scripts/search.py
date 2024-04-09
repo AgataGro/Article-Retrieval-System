@@ -3,8 +3,9 @@ import numpy as np
 import sys
 import hnswlib
 import time
-from ai.utils import print_wrapped  # Ensure this module path is correct
-from ai.model import get_model  # Ensure this module path is correct
+from ai.utils import print_wrapped  
+from ai.model import get_model  
+
 
 if __name__ == "__main__":
     # Load the data from CSV file

@@ -47,9 +47,6 @@ def split_into_sentences(entries:list[dict[str, any]]):
         # Extract sentences as strings from the spaCy document
         item["sentences"] = [str(sentence) for sentence in doc.sents]
 
-        # Count the number of sentences and update the entry
-        item["sentence_count_spacy"] = len(item["sentences"])
-
     # Return the updated list of entries
     return entries
 
@@ -89,7 +86,7 @@ def create_chunks(entries:list[dict[str, any]], k:int):
     then compiles these chunks along with their metadata into a list of dictionaries.
     Each entry is expected to have sentences, an ID, and a Title. The function
     splits sentences into chunks, then for each chunk, it creates a dictionary
-    capturing the chunk itself and various statistics about it.
+    capturing the chunk, title and ID.
 
     Parameters:
     - entries (List[Dict[str, Any]]): A list of dictionaries, where each dictionary
@@ -99,8 +96,7 @@ def create_chunks(entries:list[dict[str, any]], k:int):
     Returns:
     - List[Dict[str, Any]]: A list of dictionaries, where each dictionary represents
       a chunk with its metadata, including the original ID, Title, the chunk of
-      sentences combined into a single string, character count, word count, and
-      an approximate token count.
+      sentences combined into a single string.
 
     The function also adjusts sentence spacing and formatting, ensuring that sentences
     are properly spaced and that there is a space following any period that is
@@ -138,12 +134,7 @@ def create_chunks(entries:list[dict[str, any]], k:int):
             joined_sentence_chunk = re.sub(r'\.([A-Z])', r'. \1', joined_sentence_chunk)
 
             # Populate the chunk dictionary with the chunk and its statistics
-            chunk_dict["sentence_chunk"] = joined_sentence_chunk
-            chunk_dict["chunk_char_count"] = len(joined_sentence_chunk)
-            chunk_dict["chunk_word_count"] = len(joined_sentence_chunk.split(" "))
-            # Approximate token count assuming 1 token ~ 4 characters
-            chunk_dict["chunk_token_count"] = len(joined_sentence_chunk) / 4
-            
+            chunk_dict["sentence_chunk"] = joined_sentence_chunk     
             record_chunks.append(chunk_dict)
 
     # Convert the list of chunk dictionaries into a DataFrame and then to a list of records
